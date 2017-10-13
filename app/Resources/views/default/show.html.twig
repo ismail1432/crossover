@@ -16,7 +16,11 @@
                 <div class="card-action">
                     <p>{{ article.reporter }}</p>
                     <p>{{ article.curentDate|date('Y/m/d')  }}</p>
+                    <p><a href="{{ path('article_pdf', {'id': article.id}) }}">Download PDF</a></p>
+
+                    {% if ( is_granted('ROLE_USER')) and article.reporter.id == app.user.id %}
                     <p> <a href="{{ path('article_remove', {'id' : article.id}) }}"><i class="material-icons">delete</i></a></p>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -3,5 +3,27 @@
 {% block body %}
     <h1>Homepage</h1>
 <h2>Welcome in da Cross Application </h2>
+<h3>Last Ten articles !</h3>
+<div class="col s12 m8 offset-m2 l6 offset-l3">
+    {% for article in articles %}
+        <div class="card-panel grey lighten-5 z-depth-1">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                    <img src="{{ asset(article.image.webPath) }}" alt="{{ article.image.alt }}" class="circle responsive-img"> <!-- notice the "circle" class -->
+                </div>
+                <div class="col s10">
+              <span class="black-text">
+               {{ article.title }}
+              </span>
+                </div>
+                <div class="col s10">
+              <span class="black-text">
+               {{ article.resume }}
+              </span>
+                </div>
+                <a href="{{ path('article_show', {'id': article.id}) }}">Read more...</a>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
 

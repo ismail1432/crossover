@@ -17,10 +17,13 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $articles = $em->getRepository(Article::class)->findLastTen();
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'articles' => $articles
         ]);
     }
 
@@ -37,16 +40,13 @@ class DefaultController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $article = $form->getData();
-
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $article->setReporter($user);
             $em->persist($article);
             $em->flush($article);
 
             $this->addFlash('notice', 'Article added successfully');
-
             return $this->redirectToRoute('article_show',['id'=> $article->getId()]);
-
         }
         return $this->render('default/add.html.twig', [
             'form' => $form->createView()
@@ -80,14 +80,12 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/article/list", name="article_list")
+     * @Route("/admin/article/list", name="article_list")
      */
     public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $articles = $em->getRepository(Article::class)->findLastTen();
-
-        $this->addFlash('notice', 'Article removed !');
+        $articles = $em->getRepository(Article::class)->findArticleByUser();
 
         return $this->render('default/list.html.twig', [
             'articles' => $articles
