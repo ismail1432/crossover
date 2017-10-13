@@ -54,9 +54,8 @@ class Article
     private $curentDate;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="reporter", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $reporter;
 

@@ -12,9 +12,16 @@
     <body>
     <nav>
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Logo</a>
+            <a href="{{ path('homepage') }}" class="brand-logo">Cross Over @app</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
+                {% if ( is_granted('ROLE_USER')) %}
+                    <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                    <li><a href="{{ path('article_add') }}">Add news</a></li>
+                   <li> <a href="{{ path('article_list') }}">List news</a></li>
+                {% else %}
+                    <li><a  href="{{ path('fos_user_security_login') }}">Login</a></li>
+                    <li><a  href="{{ path('fos_user_registration_register') }}">Register</a>></li>
+                {% endif %}
                 <li><a href="badges.html">Components</a></li>
                 <li><a href="collapsible.html">JavaScript</a></li>
             </ul>

@@ -25,13 +25,12 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/article/add", name="article_add")
+     * @Route("/admin/article/add", name="article_add")
      */
     public function addAction(Request $request)
     {
 
         $form = $this->createForm(ArticleType::class);
-
         $form->handleRequest($request);
 
         if($request->isMethod('POST') && $form->isValid()){
@@ -64,7 +63,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/article/remove/{id}", name="article_remove", requirements={"page": "\d+"})
+     * @Route("/admin/article/remove/{id}", name="article_remove", requirements={"page": "\d+"})
      * @ParamConverter("post", class="AppBundle:Article")
      */
     public function removeAction(Article $article)
