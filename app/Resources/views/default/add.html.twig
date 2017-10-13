@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1>Add Article</h1>
+
+
+    {{ form_start(form) }}
+    {{ form(form) }}
+    {{ form_widget(form.save, {'attr': {'class': 'btn'}}) }}
+
+
+{% endblock %}
