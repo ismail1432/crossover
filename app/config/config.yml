@@ -85,3 +85,12 @@ knp_snappy:
         enabled:    true
         binary:     /usr/local/bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
         options:    []
+
+eko_feed:
+    feeds:
+        article:
+            title:       'My articles/posts'
+            description: 'Latests 10 news'
+            link:        'http://eniams.crossover.app.fr'
+            encoding:    'utf-8'
+            author:      'Smaine Milianni'

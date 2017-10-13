@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Eko\FeedBundle\Item\Writer\RoutedItemInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -11,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ArticleRepository")
  */
-class Article
+class Article implements RoutedItemInterface
 {
     /**
      * @var int
@@ -206,5 +207,35 @@ class Article
         return substr($this->text,0, 50);
     }
 
+    public function getFeedItemTitle()
+    {
+        return $this->getTitle();
+    }
+
+    public function getFeedItemDescription()
+    {
+        return $this->getText();
+
+    }
+
+    public function getFeedItemRouteName()
+    {
+        return 'article_show';
+    }
+
+    public function getFeedItemRouteParameters()
+    {
+       return ['id' => $this->getId()];
+    }
+
+    public function getFeedItemUrlAnchor()
+    {
+        return '';
+    }
+
+    public function getFeedItemPubDate()
+    {
+        return $this->getCurentDate();
+    }
 }
 

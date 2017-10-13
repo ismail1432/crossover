@@ -9,12 +9,13 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\AppBundle;
 use AppBundle\Entity\Article;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-
+use Symfony\Component\HttpFoundation\Response;
 
 
 class MediaController extends Controller
@@ -36,7 +37,21 @@ class MediaController extends Controller
 
         return new PdfResponse(
             $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
-            'test.pdf'
+            $fileName
         );
+    }
+
+    /**
+     *
+     * @Route("/article_rss", name="article_rss")
+     */
+    public function feedAction()
+    {
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findLastTen();
+
+        $feed = $this->get('eko_feed.feed.manager')->get('article');
+        $feed->addFromArray($articles);
+
+        return new Response($feed->render('rss'));
     }
 }

@@ -5,7 +5,7 @@
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
-            "Knp\\Bundle\\SnappyBundle\\": ""
+            "Knp\\Bundle\\SnappyBundle\\": "",
         },
         "classmap": [
             "app/AppKernel.php",
@@ -33,7 +33,8 @@
         "symfony/symfony": "3.3.*",
         "twig/twig": "^1.0||^2.0",
         "friendsofsymfony/user-bundle": "~2.0",
-        "knplabs/knp-snappy-bundle": "^1.5.1"
+        "knplabs/knp-snappy-bundle": "^1.5.1",
+        "eko/feedbundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
