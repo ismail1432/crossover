@@ -38,6 +38,8 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $article = $form->getData();
 
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $article->setReporter($user);
             $em->persist($article);
             $em->flush($article);
 

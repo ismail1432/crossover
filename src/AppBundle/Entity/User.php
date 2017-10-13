@@ -25,7 +25,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="user", cascade={"persist", "remove"} )
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Article", mappedBy="reporter", cascade={"persist", "remove"} )
      * @ORM\JoinColumn(nullable=true)
      */
     private $articles;
@@ -36,10 +36,25 @@ class User extends BaseUser
 
     }
 
-    public function getRole()
+    public function addArticle(Article $article)
     {
-        return ['ROLES_USER'];
+        $this->articles[] = $article;
+        return $this;
     }
 
-    public func
+    public function getRole()
+    {
+        return ['ROLE_USER'];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+
+
 }

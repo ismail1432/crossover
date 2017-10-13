@@ -159,9 +159,10 @@ class Article
      *
      * @return Article
      */
-    public function setReporter($reporter)
+    public function setReporter(User $user)
     {
-        $this->reporter = $reporter;
+        $this->reporter = $user;
+        $user->addArticle($this);
 
         return $this;
     }
