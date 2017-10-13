@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article
@@ -23,14 +24,24 @@ class Article
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "The title must be at least {{ limit }} characters long",
+     *      maxMessage = "The title cannot be longer than {{ limit }} characters"
+     * )
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "The text must be at least {{ limit }} characters long",
+     * )
      * @ORM\Column(name="text", type="text")
      */
     private $text;

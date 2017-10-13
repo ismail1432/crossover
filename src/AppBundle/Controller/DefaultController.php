@@ -44,10 +44,10 @@ class DefaultController extends Controller
 
             $this->addFlash('notice', 'Article added successfully');
 
-            return $this->redirectToRoute('show_article',['id'=> $article->getId()]);
+            return $this->redirectToRoute('article_show',['id'=> $article->getId()]);
 
         }
-        return $this->render('default/show.html.twig', [
+        return $this->render('default/add.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -84,7 +84,7 @@ class DefaultController extends Controller
     public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $articles = $em->getRepository(Article::class)->findAll();
+        $articles = $em->getRepository(Article::class)->findLastTen();
 
         $this->addFlash('notice', 'Article removed !');
 

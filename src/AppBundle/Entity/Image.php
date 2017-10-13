@@ -10,6 +10,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Entity\ImageRepository")
@@ -33,7 +35,12 @@ class Image
      */
     private $alt;
 
-
+    /**
+     * @Assert\Image(
+     *     detectCorrupted = true,
+     *     corruptedMessage = "Article photo is corrupted. Upload it again."
+     * )
+     */
     private $file;
     private $tempFilename;
 

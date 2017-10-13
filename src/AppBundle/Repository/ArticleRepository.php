@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findLastTen()
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->addOrderBy('a.curentDate', 'DESC');
+        $qb->setMaxResults(10);
+        return $qb->getQuery()->getResult();
+    }
 }

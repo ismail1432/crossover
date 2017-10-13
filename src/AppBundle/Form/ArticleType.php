@@ -17,7 +17,7 @@ class ArticleType extends AbstractType
     {
         $builder->add('title')
             ->add('text')
-            //->add('curentDate')
+
             ->add('reporter')
             ->add('image', ImageType::class)
 
@@ -31,7 +31,9 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Article'
+            'data_class' => 'AppBundle\Entity\Article',
+            'validation_groups' => array('default'),
+
         ));
     }
 
