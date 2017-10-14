@@ -2,6 +2,8 @@
     "name": "eniams/crossover",
     "license": "proprietary",
     "type": "project",
+    "description" : "Smaine Milianni - Eniams Dev",
+
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
@@ -34,7 +36,7 @@
         "twig/twig": "^1.0||^2.0",
         "friendsofsymfony/user-bundle": "~2.0",
         "knplabs/knp-snappy-bundle": "^1.5.1",
-        "eko/feedbundle": "dev-master",
+        "eko/feedbundle": "^1.2.8",
         "phpunit/phpunit": "^6.4",
         "doctrine/doctrine-fixtures-bundle": "^2.4"
     },
