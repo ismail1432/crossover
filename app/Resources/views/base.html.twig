@@ -3,14 +3,14 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}CrossOver !{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" rel="stylesheet">
     </head>
     <body>
-    <nav>
+    <nav class="blue accent-1">
         <div class="nav-wrapper">
             <a href="{{ path('homepage') }}" class="brand-logo">Cross Over @app</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -36,6 +36,28 @@
 
         {% block body %}{% endblock %}
     </div>
-        {% block javascripts %}{% endblock %}
+    <footer class="page-footer blue accent-1">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Enimas Dev</h5>
+                    <p class="grey-text text-lighten-4">This CrossOver technical test was made with <3</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="www.smaine.me">Portfolio</a></li>
+                        <li><a class="grey-text text-lighten-3" href="mailto:smaine.milianni@gmail.com">Contact Me</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/ismail1432">Github</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2017 Copyright Eniams Dev
+            </div>
+        </div>
+    </footer>
     </body>
 </html>

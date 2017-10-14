@@ -1,10 +1,11 @@
 {% if articles|length > 0 %}
+    {% if ( is_granted('ROLE_USER')) %}
+        <h3>Your news</h3>
+    {% else %}
+        <h3>Last 10 articles !</h3>
+    {% endif %}
     {% for article in articles %}
-        {% if ( is_granted('ROLE_USER')) %}
-            <h3>Your news</h3>
-        {% else %}
-            <h3>Last 10 articles !</h3>
-        {% endif %}
+
         <div class="card-panel grey lighten-5 z-depth-1">
             <div class="row valign-wrapper">
                 <div class="col s2">
