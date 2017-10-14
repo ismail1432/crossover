@@ -14,13 +14,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Form\ArticleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\{Route, ParamConverter};
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
 {
     /**
      * @Route("/admin/article/add", name="article_add")
      */
-    public function addAction(Request $request)
+    public function addAction(Request $request) :Response
     {
 
         $form = $this->createForm(ArticleType::class);
@@ -47,7 +48,7 @@ class AdminController extends Controller
      * @Route("/admin/article/remove/{id}", name="article_remove", requirements={"page": "\d+"})
      * @ParamConverter("post", class="AppBundle:Article")
      */
-    public function removeAction(Article $article)
+    public function removeAction(Article $article) :Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -68,10 +69,12 @@ class AdminController extends Controller
     /**
      * @Route("/admin/article/list", name="article_list")
      */
-    public function listAction()
+    public function listAction() :Response
     {
         $em = $this->getDoctrine()->getManager();
-        $articles = $em->getRepository(Article::class)->findArticleByUser();
+        $userId = $this->get('security.token_storage')->getToken()->getUser()->getId();
+
+        $articles = $em->getRepository(Article::class)->findArticleByUser($userId);
 
         return $this->render('default/list.html.twig', [
             'articles' => $articles

@@ -9,7 +9,16 @@
 namespace Tests\AppBundle\Controller;
 
 
-class MediaControllerTest
-{
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
+class MediaControllerTest extends WebTestCase
+{
+    public function testRssFeed()
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/article/rss');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+    }
 }

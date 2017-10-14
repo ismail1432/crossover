@@ -23,10 +23,10 @@ class MediaController extends Controller
 
     /**
      *
-     * @Route("/article_pdf/{id}", name="article_pdf",requirements={"page": "\d+"})
+     * @Route("/article/pdf/{id}", name="article_pdf",requirements={"page": "\d+"})
      * @ParamConverter("post", class="AppBundle:Article")
      */
-    public function pdfAction(Article $article)
+    public function pdfAction(Article $article) :PdfResponse
     {
 
         $html = $this->renderView('pdf/show_pdf.html.twig', array(
@@ -37,15 +37,16 @@ class MediaController extends Controller
 
         return new PdfResponse(
             $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
-            $fileName
+            $fileName,
+            'application/pdf'
         );
     }
 
     /**
      *
-     * @Route("/article_rss", name="article_rss")
+     * @Route("/article/rss", name="article_rss")
      */
-    public function feedAction()
+    public function feedAction() :Response
     {
         $articles = $this->getDoctrine()->getRepository(Article::class)->findLastTen();
 

@@ -5,17 +5,17 @@ namespace AppBundle\Controller;
 use AppBundle\AppBundle;
 use AppBundle\Entity\Article;
 use AppBundle\Form\ArticleType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\{Route,ParamConverter};
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -33,7 +33,7 @@ class DefaultController extends Controller
      * @Route("/article/show/{id}", name="article_show", requirements={"page": "\d+"})
      * @ParamConverter("post", class="AppBundle:Article")
      */
-    public function showAction(Article $article)
+    public function showAction(Article $article) :Response
     {
         return $this->render('default/show.html.twig', [
             'article' => $article

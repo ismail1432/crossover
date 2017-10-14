@@ -67,7 +67,7 @@ class Article implements RoutedItemInterface
 
     public function __construct()
     {
-        $this->setCurentDate( new \DateTime('now'));
+        $this->setCurentDate(new \DateTime('now'));
     }
 
 

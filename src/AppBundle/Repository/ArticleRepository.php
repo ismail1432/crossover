@@ -10,10 +10,29 @@ namespace AppBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findLastTen()
+    /**
+     * @return array
+     */
+    public function findLastTen() :array
     {
         $qb = $this->createQueryBuilder('a')
             ->addOrderBy('a.curentDate', 'DESC');
+        $qb->setMaxResults(10);
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param $userId
+     * @return array
+     */
+    public function findArticleByUser($userId) :array
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->addOrderBy('a.curentDate', 'DESC')
+            ->where('a.reporter  = :identifier')
+            ->setParameter('identifier', $userId)
+
+        ;
         $qb->setMaxResults(10);
         return $qb->getQuery()->getResult();
     }
