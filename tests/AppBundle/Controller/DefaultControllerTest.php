@@ -13,7 +13,7 @@ class DefaultControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('Welcome in da Cross Application', $crawler->filter('h2')->text());
+        $this->assertContains('Welcome in da Cross Application', $crawler->filter('h1')->text());
     }
 
     public function testRoutes()
