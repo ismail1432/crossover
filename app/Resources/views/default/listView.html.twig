@@ -1,3 +1,4 @@
+{% if articles.count > 0 %}
 {% for article in articles %}
     <div class="card-panel grey lighten-5 z-depth-1">
         <div class="row valign-wrapper">
@@ -18,3 +19,6 @@
         </div>
     </div>
 {% endfor %}
+{% else %}
+    <h3>There is no articles :-(</h3>
+{% endif %}

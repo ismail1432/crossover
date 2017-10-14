@@ -22,7 +22,6 @@ class ArticleTypeTest extends TypeTestCase
             'title' => 'THIS IS A THE TITLE',
             'text' => 'THIS IS TEXT',
             'image' => null,
-            'currentDate' => null
         );
 
         $form = $this->factory->create(ArticleType::class);

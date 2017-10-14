@@ -35,7 +35,8 @@
         "friendsofsymfony/user-bundle": "~2.0",
         "knplabs/knp-snappy-bundle": "^1.5.1",
         "eko/feedbundle": "dev-master",
-        "phpunit/phpunit": "^6.4"
+        "phpunit/phpunit": "^6.4",
+        "doctrine/doctrine-fixtures-bundle": "^2.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
