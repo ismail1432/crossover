@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a7b70b308bff09a4fb993015add8c04",
+    "content-hash": "86c21603760dc72544c47aedc14a7944",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -989,16 +989,16 @@
         },
         {
             "name": "eko/feedbundle",
-            "version": "dev-master",
+            "version": "1.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eko/FeedBundle.git",
-                "reference": "49388928bd2d6739c9e41cf3bf4736fb2408633c"
+                "reference": "2d2c8eb09f4ff4eb2c482315d18fa5173bd273eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eko/FeedBundle/zipball/49388928bd2d6739c9e41cf3bf4736fb2408633c",
-                "reference": "49388928bd2d6739c9e41cf3bf4736fb2408633c",
+                "url": "https://api.github.com/repos/eko/FeedBundle/zipball/2d2c8eb09f4ff4eb2c482315d18fa5173bd273eb",
+                "reference": "2d2c8eb09f4ff4eb2c482315d18fa5173bd273eb",
                 "shasum": ""
             },
             "require": {
@@ -1044,7 +1044,7 @@
                 "feed",
                 "rss"
             ],
-            "time": "2017-01-06 21:18:42"
+            "time": "2016-04-20T19:56:02+00:00"
         },
         {
             "name": "fig/link-util",
@@ -4613,9 +4613,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "eko/feedbundle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
