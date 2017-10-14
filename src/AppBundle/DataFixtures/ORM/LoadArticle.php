@@ -9,28 +9,35 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Article;
+use AppBundle\Entity\Image;
 use AppBundle\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadArticle extends Fixture
 {
-    public function load(ObjectManager $manager)
+    /**
+     * @param ObjectManager $manager
+     */
+    public function load(ObjectManager $manager) :void
     {
-
-
-        echo 'article';
-
         $i = 0;
-
-        while ($i < 25){
-            $this->provideDatas($manager);
+        //There 12 images
+        while ($i < 11){
+            //Persist the image and return it
+            $image =  $this->loadImage($manager,$i);
+            //Create artcile
+            $this->provideDatas($manager,$image);
             $i++;
         }
         $manager->flush();
     }
 
-    public function provideDatas(ObjectManager $manager)
+    /**
+     * @param ObjectManager $manager
+     * @param Image $image
+     */
+    public function provideDatas(ObjectManager $manager, Image $image) :void
     {
 
         $content = "Comics may have been a good companion for many people in their childhood. Except for the illustration and storyline in
@@ -48,37 +55,45 @@ class LoadArticle extends Fixture
 
         $title = ["interview","meeting", "urgency", "curiosity", "cool storie", "clover", "summer", "hollidays", "problem", "question"];
 
+        //Display random title
+        $titleRand = rand(0 , 9);
+
+        $reporter = $this->getReference('user');
+
+
         $article = new Article();
-
-        $titleRand = rand (0 , 9);
-
-
-        $article->setReporter($this->getReference('user'));
+        $article->setReporter($reporter);
         $article->setText($content);
         $article->setTitle($title[$titleRand]);
-
-        $imagesTab = [
-            'barcelona.jpeg',
-            'berlin.jpeg',
-            'dubai.jpeg',
-            'geneve.jpeg',
-            'londres.jpeg',
-            'lyon.jpeg',
-            'miami.jpeg',
-            'monaco.jpeg',
-            'newYork.jpeg',
-            'paris.jpeg',
-            'tokyo.jpeg',
-            'tunis.jpeg',
-        ];
-
-
+        $article->setImage($image);
 
         $manager->persist($article);
 
     }
 
-    public function getDependencies()
+    /**
+     * @param $manager
+     * @param $key
+     * @return Image
+     */
+    public function loadImage($manager, $key) :Image
+    {
+        $imagesTab = [
+            'barcelona', 'berlin', 'dubai', 'geneve', 'londres', 'lyon',
+            'miami', 'monaco', 'newYork', 'paris', 'tokyo', 'tunis',
+        ];
+
+            $image = new Image();
+            $image->setUrl($imagesTab[$key].'.jpeg');
+            $image->setAlt($imagesTab[$key]);
+
+        return $image;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDependencies() :array
     {
         return array(
             LoadUser::class,

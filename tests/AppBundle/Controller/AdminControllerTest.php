@@ -26,7 +26,7 @@ class AdminControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $em = $client->getContainer()->get('doctrine')->getManager();
-        $user = $em->getRepository('AppBundle:User')->findOneByUsername('smaine');
+        $user = $em->getRepository('AppBundle:User')->findOneByUsername('admin');
 
         $token = new UsernamePasswordToken($user, $user->getPassword(), 'main', $user->getRoles());
         self::$kernel->getContainer()->get('security.token_storage')->setToken($token);

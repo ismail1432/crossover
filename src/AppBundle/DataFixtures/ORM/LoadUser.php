@@ -21,6 +21,7 @@ class LoadUser extends Fixture implements ContainerAwareInterface
     public function load(ObjectManager $manager)
     {
 
+        //Get service
         $userManager = $this->container->get('fos_user.user_manager');
 
         // Create our user and set details
@@ -31,11 +32,8 @@ class LoadUser extends Fixture implements ContainerAwareInterface
         $user->setEnabled(true);
         $user->setRoles(array('ROLE_USER'));
 
-        // Update the user
+        // Update User
         $userManager->updateUser($user, true);
-
-       // $manager->persist($user);
-       // $manager->flush();
 
         $this->addReference('user', $user);
 
