@@ -89,7 +89,7 @@ knp_snappy:
 eko_feed:
     feeds:
         article:
-            title:       'My articles/posts'
+            title:       'Last 10 News on CrossOver App'
             description: 'Latests 10 news'
             link:        'http://eniams.crossover.app.fr'
             encoding:    'utf-8'

@@ -27,31 +27,7 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/admin/article/add", name="article_add")
-     */
-    public function addAction(Request $request)
-    {
 
-        $form = $this->createForm(ArticleType::class);
-        $form->handleRequest($request);
-
-        if($request->isMethod('POST') && $form->isValid()){
-
-            $em = $this->getDoctrine()->getManager();
-            $article = $form->getData();
-            $user = $this->get('security.token_storage')->getToken()->getUser();
-            $article->setReporter($user);
-            $em->persist($article);
-            $em->flush($article);
-
-            $this->addFlash('notice', 'Article added successfully');
-            return $this->redirectToRoute('article_show',['id'=> $article->getId()]);
-        }
-        return $this->render('default/add.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
 
     /**
      * @Route("/article/show/{id}", name="article_show", requirements={"page": "\d+"})
@@ -61,34 +37,6 @@ class DefaultController extends Controller
     {
         return $this->render('default/show.html.twig', [
             'article' => $article
-        ]);
-    }
-
-    /**
-     * @Route("/admin/article/remove/{id}", name="article_remove", requirements={"page": "\d+"})
-     * @ParamConverter("post", class="AppBundle:Article")
-     */
-    public function removeAction(Article $article)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($article);
-        $em->flush();
-
-        $this->addFlash('notice', 'Article removed !');
-
-        return $this->redirectToRoute('article_list');
-    }
-
-    /**
-     * @Route("/admin/article/list", name="article_list")
-     */
-    public function listAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $articles = $em->getRepository(Article::class)->findArticleByUser();
-
-        return $this->render('default/list.html.twig', [
-            'articles' => $articles
         ]);
     }
 

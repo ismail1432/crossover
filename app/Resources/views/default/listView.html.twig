@@ -1,0 +1,20 @@
+{% for article in articles %}
+    <div class="card-panel grey lighten-5 z-depth-1">
+        <div class="row valign-wrapper">
+            <div class="col s2">
+                <img src="{{ asset(article.image.webPath) }}" alt="{{ article.image.alt }}" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s10">
+              <span class="black-text">
+               {{ article.title }}
+              </span>
+            </div>
+            <div class="col s10">
+              <span class="black-text">
+               {{ article.resume }}
+              </span>
+            </div>
+            <a href="{{ path('article_show', {'id': article.id}) }}">Read more...</a>
+        </div>
+    </div>
+{% endfor %}
