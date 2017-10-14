@@ -14,7 +14,7 @@
                     <p>{{ article.text }}</p>
                 </div>
                 <div class="card-action">
-                    <p>{{ article.reporter }}</p>
+                    <p class="author"> by <span class="orange-text text-accent-1 capitalize" >{{ article.reporter }}</span></p>
                     <p>{{ article.curentDate|date('Y/m/d')  }}</p>
                     <p><a href="{{ path('article_pdf', {'id': article.id}) }}">Download PDF</a></p>
 

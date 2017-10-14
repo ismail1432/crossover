@@ -4,3 +4,13 @@ body{
 #_submit{
     background-color: #E5F2FC;
 }
+input[type="submit"]{
+    background-color: #E5F2FC;
+}
+.author{
+    font-size: 20px;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
